@@ -36,7 +36,8 @@ public class ChematriaLanguageProvider extends LanguageProvider {
         add(ChematriaItems.RAW_SILVER_CHUNK.get(), "Silver Raw Chunk");
         add(ChematriaItems.SILVER_INGOT.get(), "Silver Ingot");
 
-
+        //Glassware
+        add(ChematriaItems.LARGE_JAR_ITEM.get(), "Glass Jar");
 
 
     }
