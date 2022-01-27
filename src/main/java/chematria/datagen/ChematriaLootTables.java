@@ -12,6 +12,8 @@ public class ChematriaLootTables extends ChematriaLootTableProvider {
 
     @Override
     protected void addTables(){
+        lootTables.put(ChematriaBlocks.LARGE_JAR.get(), createSimpleTable("large_jar", ChematriaBlocks.LARGE_JAR.get()));
+
         lootTables.put(ChematriaBlocks.LEAD_ORE_OVERWORLD.get(), createSilkTouchTable("lead_ore_overworld", ChematriaBlocks.LEAD_ORE_OVERWORLD.get(), ChematriaItems.RAW_LEAD_CHUNK.get(), 1, 3));
         lootTables.put(ChematriaBlocks.LEAD_ORE_DEEPSLATE.get(), createSilkTouchTable("lead_ore_deepslate", ChematriaBlocks.LEAD_ORE_DEEPSLATE.get(), ChematriaItems.RAW_LEAD_CHUNK.get(), 1, 3));
 
