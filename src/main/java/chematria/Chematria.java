@@ -15,5 +15,6 @@ public final class Chematria {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         ChematriaBlocks.register(bus);
         ChematriaItems.register(bus);
+        
     }
 }
