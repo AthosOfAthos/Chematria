@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "chematria:block/mercury_ore_overworld"
+  }
+}

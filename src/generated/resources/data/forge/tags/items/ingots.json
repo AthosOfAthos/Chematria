@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "chematria:lead_ingot",
+    "chematria:tin_ingot",
+    "chematria:mercury_ingot",
+    "chematria:silver_ingot"
+  ]
+}

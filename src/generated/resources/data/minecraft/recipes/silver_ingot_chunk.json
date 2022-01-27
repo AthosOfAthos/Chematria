@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "chematria:raw_silver_chunk"
+  },
+  "result": "chematria:silver_ingot",
+  "experience": 1.0,
+  "cookingtime": 100
+}

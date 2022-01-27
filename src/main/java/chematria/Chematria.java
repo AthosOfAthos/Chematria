@@ -1,6 +1,7 @@
 package chematria;
 
 import chematria.blocks.ChematriaBlocks;
+import chematria.datagen.DataGenerators;
 import chematria.items.ChematriaItems;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;

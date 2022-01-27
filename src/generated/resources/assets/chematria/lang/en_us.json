@@ -1,0 +1,19 @@
+{
+  "block.chematria.lead_ore_deepslate": "Lead Ore",
+  "block.chematria.lead_ore_overworld": "Lead Ore",
+  "block.chematria.mercury_ore_deepslate": "Mercury Ore",
+  "block.chematria.mercury_ore_overworld": "Mercury Ore",
+  "block.chematria.silver_ore_deepslate": "Silver Ore",
+  "block.chematria.silver_ore_overworld": "Silver Ore",
+  "block.chematria.tin_ore_deepslate": "Tin Ore",
+  "block.chematria.tin_ore_overworld": "Tin Ore",
+  "item.chematria.lead_ingot": "Lead Ingot",
+  "item.chematria.mercury_ingot": "Mercury Ingot",
+  "item.chematria.raw_lead_chunk": "Lead Raw Chunk",
+  "item.chematria.raw_mercury_chunk": "Mercury Raw Chunk",
+  "item.chematria.raw_silver_chunk": "Silver Raw Chunk",
+  "item.chematria.raw_tin_chunk": "Tin Raw Chunk",
+  "item.chematria.silver_ingot": "Silver Ingot",
+  "item.chematria.tin_ingot": "Tin Ingot",
+  "itemGroup.chematria": "Chematria"
+}
