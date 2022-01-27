@@ -19,6 +19,8 @@ public final class ChematriaItems {
 
     public static final RegistryObject<BlockItem> LARGE_JAR_ITEM = ITEMS.register("large_jar", () -> new BlockItem(ChematriaBlocks.LARGE_JAR.get(), new Item.Properties().tab(CreativeModeTab.TAB_BREWING)));
 
+    public static final RegistryObject<BlockItem> MORTAR_AND_PESTLE = ITEMS.register("mortar_and_pestle", () -> new BlockItem(ChematriaBlocks.MORTAR_AND_PESTLE.get(), new Item.Properties().stacksTo(1)));
+
     private ChematriaItems() {}
 
     public static void register(IEventBus bus) {

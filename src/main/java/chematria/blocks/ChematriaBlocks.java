@@ -24,6 +24,8 @@ public final class ChematriaBlocks {
     public static final RegistryObject<BlockEntityType<LargeJarEntity>> LARGE_JAR_ENTITY = BLOCK_ENTITIES.register("large_jar_entity",
             () -> BlockEntityType.Builder.of(LargeJarEntity::new, LARGE_JAR.get()).build(null));
 
+    public static final RegistryObject<MortarAndPestle> MORTAR_AND_PESTLE = BLOCKS.register("mortar_and_pestle", MortarAndPestle::new);
+
     public static void register(IEventBus bus) {
         BLOCKS.register(bus);
         BLOCK_ENTITIES.register(bus);

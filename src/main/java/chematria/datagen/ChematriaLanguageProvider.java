@@ -39,7 +39,8 @@ public class ChematriaLanguageProvider extends LanguageProvider {
         //Glassware
         add(ChematriaItems.LARGE_JAR_ITEM.get(), "Glass Jar");
 
-
+        //Crafting
+        add(ChematriaItems.MORTAR_AND_PESTLE.get(), "Mortar and Pestle");
     }
 
 }
