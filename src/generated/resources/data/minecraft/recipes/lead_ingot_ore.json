@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "chematria:lead_ore"
+  },
+  "result": "chematria:lead_ingot",
+  "experience": 1.0,
+  "cookingtime": 100
+}

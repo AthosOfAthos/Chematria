@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "chematria:lead_ore_overworld",
+    "chematria:lead_ore_deepslate",
+    "chematria:tin_ore_overworld",
+    "chematria:tin_ore_deepslate",
+    "chematria:mercury_ore_overworld",
+    "chematria:mercury_ore_deepslate",
+    "chematria:silver_ore_overworld",
+    "chematria:silver_ore_deepslate"
+  ]
+}

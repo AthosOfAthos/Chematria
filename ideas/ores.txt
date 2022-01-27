@@ -1,0 +1,3 @@
+An idea for doing ore impurities would be each ore (even the old ones) is superceded with
+an ore block type which has a trace impurity (at percent) which is stored secretly with the block item data
+This might make the items unstackable, or if this is per generated vein it might mean only veins stack, which is fine

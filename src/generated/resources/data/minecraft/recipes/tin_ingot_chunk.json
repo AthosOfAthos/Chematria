@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "chematria:raw_tin_chunk"
+  },
+  "result": "chematria:tin_ingot",
+  "experience": 1.0,
+  "cookingtime": 100
+}
