@@ -17,14 +17,14 @@ import static chematria.Chematria.ID;
 public final class ChematriaBlocks {
     private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, ID);
 
+    public static final RegistryObject<Block> LARGE_JAR = BLOCKS.register("large_jar", () -> new Block(BlockBehaviour.Properties.of(Material.GLASS).noOcclusion()));
+  
     private ChematriaBlocks() {
     }
 
     public static void register(IEventBus bus) {
         BLOCKS.register(bus);
     }
-
-
 
     //Ores
     public static final BlockBehaviour.Properties ORE_PROPERTIES = BlockBehaviour.Properties.of(Material.STONE).strength(2f).requiresCorrectToolForDrops();
