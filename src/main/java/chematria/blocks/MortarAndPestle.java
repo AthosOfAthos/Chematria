@@ -8,12 +8,14 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -35,14 +37,22 @@ public class MortarAndPestle extends Block implements EntityBlock {
         super.attack(blockstate, level, position, player);
         MortarAndPestleEntity mortar = (MortarAndPestleEntity) level.getBlockEntity(position);
         if (mortar != null)
-            mortar.attack(level);
+            mortar.attack();
+    }
+
+    @Override
+    public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos position, Player player, boolean willHarvest, FluidState fluid) {
+        MortarAndPestleEntity mortar = (MortarAndPestleEntity) level.getBlockEntity(position);
+        if (mortar != null)
+            mortar.destroy();
+        return super.onDestroyedByPlayer(state, level, position, player, willHarvest, fluid);
     }
 
     @Override
     public InteractionResult use(BlockState blockstate, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult) {
         MortarAndPestleEntity mortar = (MortarAndPestleEntity) level.getBlockEntity(position);
         if (mortar != null)
-            mortar.use(level, player);
+            mortar.use(player);
         return InteractionResult.SUCCESS;
     }
 

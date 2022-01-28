@@ -9,7 +9,6 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
@@ -27,7 +26,7 @@ public class MortarAndPestleEntity extends BlockEntity {
         workLeft = 0;
     }
 
-    public void attack(Level level) {
+    public void attack() {
         if (level.isClientSide)
             return;
 
@@ -39,14 +38,23 @@ public class MortarAndPestleEntity extends BlockEntity {
         }
     }
 
-    public void use(Level level, Player player) {
+    public void use(Player player) {
         if (level.isClientSide)
             return;
 
         if (inventory.getStackInSlot(0).isEmpty())
             addItem(player);
         else
-            grind(level);
+            grind();
+    }
+
+    public void destroy() {
+        if (level.isClientSide)
+            return;
+        if (!inventory.getStackInSlot(0).isEmpty()) {
+            ItemEntity droppedItems = new ItemEntity(level, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), inventory.getStackInSlot(0).copy());
+            level.addFreshEntity(droppedItems);
+        }
     }
 
     protected void addItem(Player player) {
@@ -57,7 +65,7 @@ public class MortarAndPestleEntity extends BlockEntity {
         setChanged();
     }
 
-    protected void grind(Level level) {
+    protected void grind() {
         workLeft--;
         if (workLeft <= 0) {
             inventory.getStackInSlot(0).setCount(inventory.getStackInSlot(0).getCount() - 1);
