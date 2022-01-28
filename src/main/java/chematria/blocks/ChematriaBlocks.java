@@ -1,6 +1,7 @@
 package chematria.blocks;
 
 import chematria.Chematria;
+import chematria.blocks.entities.MortarAndPestleEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
@@ -25,6 +26,8 @@ public final class ChematriaBlocks {
             () -> BlockEntityType.Builder.of(LargeJarEntity::new, LARGE_JAR.get()).build(null));
 
     public static final RegistryObject<MortarAndPestle> MORTAR_AND_PESTLE = BLOCKS.register("mortar_and_pestle", MortarAndPestle::new);
+    public static final RegistryObject<BlockEntityType<MortarAndPestleEntity>> MORTAR_AND_PESTLE_ENTITY = BLOCK_ENTITIES.register("mortar_and_pestle_entity",
+            () -> BlockEntityType.Builder.of(MortarAndPestleEntity::new, MORTAR_AND_PESTLE.get()).build(null));
 
     public static void register(IEventBus bus) {
         BLOCKS.register(bus);
