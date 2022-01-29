@@ -57,6 +57,29 @@ public final class ChematriaItems {
     public static final RegistryObject<Item> RAW_SILVER_CHUNK = ITEMS.register("raw_silver_chunk", () -> new Item(ITEM_PROPERTIES));
     public static final RegistryObject<Item> SILVER_INGOT = ITEMS.register("silver_ingot", () -> new Item(ITEM_PROPERTIES));
 
+    //Trees
+    public static final RegistryObject<Item> WILLOW_LOG_ITEM = fromBlock(WILLOW_LOG);
+    public static final RegistryObject<Item> STRIPPED_WILLOW_LOG_ITEM = fromBlock(STRIPPED_WILLOW_LOG);
+    public static final RegistryObject<Item> WILLOW_WOOD_ITEM = fromBlock(WILLOW_WOOD);
+    public static final RegistryObject<Item> STRIPPED_WILLOW_WOOD_ITEM = fromBlock(STRIPPED_WILLOW_WOOD);
+    public static final RegistryObject<Item> WILLOW_PLANKS_ITEM = fromBlock(WILLOW_PLANKS);
+    public static final RegistryObject<Item> WILLOW_SLAB_ITEM = fromBlock(WILLOW_SLAB);
+    public static final RegistryObject<Item> WILLOW_STAIRS_ITEM = fromBlock(WILLOW_STAIRS);
+    public static final RegistryObject<Item> WILLOW_FENCE_ITEM = fromBlock(WILLOW_FENCE);
+    public static final RegistryObject<Item> WILLOW_FENCE_GATE_ITEM = fromBlock(WILLOW_FENCE_GATE);
+    public static final RegistryObject<Item> WILLOW_DOOR_ITEM = fromBlock(WILLOW_DOOR);
+    public static final RegistryObject<Item> WILLOW_TRAPDOOR_ITEM = fromBlock(WILLOW_TRAPDOOR);
+    public static final RegistryObject<Item> WILLOW_PRESSURE_PLATE_ITEM = fromBlock(WILLOW_PRESSURE_PLATE);
+    public static final RegistryObject<Item> WILLOW_BUTTON_ITEM = fromBlock(WILLOW_BUTTON);
+
+    public static final RegistryObject<Item> WILLOW_SIGN_ITEM = fromBlock(WILLOW_SIGN);
+    public static final RegistryObject<Item> WILLOW_WALL_SIGN_ITEM = fromBlock(WILLOW_WALL_SIGN);
+    public static final RegistryObject<Item> WILLOW_SAPLINGITEM = fromBlock(WILLOW_SAPLING);
+    public static final RegistryObject<Item> POTTED_WILLOW_SAPLING_ITEM = fromBlock(POTTED_WILLOW_SAPLING);
+    public static final RegistryObject<Item> WILLOW_LEAVES_ITEM = fromBlock(WILLOW_LEAVES);
+
+    public static final RegistryObject<Item> WILLOW_BOAT = ITEMS.register("willow_boat", ()->new Item(ITEM_PROPERTIES));
+
     //Tags?
     public static final Tags.IOptionalNamedTag<Item> LEAD_ORE_ITEM = ItemTags.createOptional(new ResourceLocation(ID, "lead_ore"));
     public static final Tags.IOptionalNamedTag<Item> TIN_ORE_ITEM = ItemTags.createOptional(new ResourceLocation(ID, "tin_ore"));
