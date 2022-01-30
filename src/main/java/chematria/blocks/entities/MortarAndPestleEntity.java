@@ -1,6 +1,7 @@
 package chematria.blocks.entities;
 
 import chematria.blocks.ChematriaBlocks;
+import chematria.recipes.MortarAndPestleRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -8,7 +9,6 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
@@ -19,14 +19,16 @@ public class MortarAndPestleEntity extends BlockEntity {
     private final String INVENTORY_TAG = "mortar_inv";
     protected int workLeft;
     private final String WORK_TAG = "workLeft";
+    protected MortarAndPestleRecipe currentRecipe;
 
     public MortarAndPestleEntity(BlockPos position, BlockState blockstate) {
         super(ChematriaBlocks.MORTAR_AND_PESTLE_ENTITY.get(), position, blockstate);
         inventory = new ItemStackHandler(1);
         workLeft = 0;
+        currentRecipe = null;
     }
 
-    public void attack() {
+    public void onAttack() {
         if (level.isClientSide)
             return;
 
@@ -38,17 +40,17 @@ public class MortarAndPestleEntity extends BlockEntity {
         }
     }
 
-    public void use(Player player) {
+    public void onUse(Player player) {
         if (level.isClientSide)
             return;
 
         if (inventory.getStackInSlot(0).isEmpty())
-            addItem(player);
+            tryAddItem(player);
         else
             grind();
     }
 
-    public void destroy() {
+    public void onDestroy() {
         if (level.isClientSide)
             return;
         if (!inventory.getStackInSlot(0).isEmpty()) {
@@ -57,21 +59,33 @@ public class MortarAndPestleEntity extends BlockEntity {
         }
     }
 
-    protected void addItem(Player player) {
+    protected void tryAddItem(Player player) {
         ItemStack heldItem = player.getMainHandItem();
-        ItemStack remainder = inventory.insertItem(0, player.getMainHandItem().copy(), false);
-        heldItem.setCount(remainder.getCount());
-        workLeft = 5;
-        setChanged();
+        MortarAndPestleRecipe recipe = MortarAndPestleRecipe.findRecipe(heldItem);
+
+        if (recipe != null) {
+            currentRecipe = recipe;
+            ItemStack remainder = inventory.insertItem(0, player.getMainHandItem().copy(), false);
+            heldItem.setCount(remainder.getCount());
+            workLeft = recipe.workRequired;
+            setChanged();
+        }
+    }
+
+    protected boolean isWorkValid() {
+        return currentRecipe.input.getCount() <= inventory.getStackInSlot(0).getCount();
     }
 
     protected void grind() {
+        if (!isWorkValid())
+            return;
+
         workLeft--;
         if (workLeft <= 0) {
-            inventory.getStackInSlot(0).setCount(inventory.getStackInSlot(0).getCount() - 1);
-            ItemEntity itemEntity = new ItemEntity(level, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), new ItemStack(Items.SAND));
-            level.addFreshEntity(itemEntity);
-            workLeft = 5;
+            inventory.extractItem(0, currentRecipe.input.getCount(), false);
+            ItemEntity result = new ItemEntity(level, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), currentRecipe.output.copy());
+            level.addFreshEntity(result);
+            workLeft = currentRecipe.workRequired;
             setChanged();
         }
     }
