@@ -7,6 +7,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -22,11 +23,8 @@ import java.util.function.Predicate;
 
 public class CrawlerItem extends Item {
         private static final Predicate<Entity> ENTITY_PREDICATE = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
-        private final Crawler.Type type;
-
-        public CrawlerItem(Crawler.Type p_40619_, Item.Properties p_40620_) {
+        public CrawlerItem(Properties p_40620_) {
             super(p_40620_);
-            this.type = p_40619_;
         }
 
         public InteractionResultHolder<ItemStack> use(Level p_40622_, Player p_40623_, InteractionHand p_40624_) {
@@ -50,14 +48,13 @@ public class CrawlerItem extends Item {
                 }
 
                 if (hitresult.getType() == HitResult.Type.BLOCK) {
-                    Crawler boat = new Crawler(p_40622_, hitresult.getLocation().x, hitresult.getLocation().y, hitresult.getLocation().z);
-                    boat.setType(this.type);
-                    boat.setYRot(p_40623_.getYRot());
-                    if (!p_40622_.noCollision(boat, boat.getBoundingBox())) {
+                    Crawler crawler = new Crawler(p_40622_, hitresult.getLocation().x, hitresult.getLocation().y, hitresult.getLocation().z);
+                    crawler.setYRot(p_40623_.getYRot());
+                    if (!p_40622_.noCollision(crawler, crawler.getBoundingBox())) {
                         return InteractionResultHolder.fail(itemstack);
                     } else {
                         if (!p_40622_.isClientSide) {
-                            p_40622_.addFreshEntity(boat);
+                            p_40622_.addFreshEntity(crawler);
                             p_40622_.gameEvent(p_40623_, GameEvent.ENTITY_PLACE, new BlockPos(hitresult.getLocation()));
                             if (!p_40623_.getAbilities().instabuild) {
                                 itemstack.shrink(1);

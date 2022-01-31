@@ -1,6 +1,7 @@
 package chematria;
 
 import chematria.blocks.ChematriaBlocks;
+import chematria.entities.ChematriaEntityTypes;
 import chematria.items.ChematriaItems;
 import chematria.recipes.ChematriaRecipe;
 import net.minecraftforge.eventbus.api.IEventBus;

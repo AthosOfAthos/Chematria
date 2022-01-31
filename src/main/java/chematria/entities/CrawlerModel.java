@@ -1,6 +1,5 @@
 package chematria.entities;
 
-import chematria.entities.Crawler;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.geom.ModelPart;

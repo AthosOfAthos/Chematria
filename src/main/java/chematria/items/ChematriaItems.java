@@ -1,6 +1,7 @@
 package chematria.items;
 
 import chematria.blocks.ChematriaBlocks;
+import chematria.entities.ChematriaEntityTypes;
 import chematria.entities.Crawler;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.*;
@@ -43,7 +44,7 @@ public final class ChematriaItems {
     //Alchemy
     public static final RegistryObject<BlockItem> LARGE_JAR_ITEM = ITEMS.register("large_jar", () -> new BlockItem(ChematriaBlocks.LARGE_JAR.get(), new Item.Properties().tab(ITEM_GROUP)));
     public static final RegistryObject<BlockItem> MORTAR_AND_PESTLE = ITEMS.register("mortar_and_pestle", () -> new BlockItem(ChematriaBlocks.MORTAR_AND_PESTLE.get(), new Item.Properties().stacksTo(1).tab(ITEM_GROUP)));
-    public static final RegistryObject<Item> COPPER_CRAWLER = ITEMS.register("copper_crawler", () -> new CrawlerItem(Crawler.Type.COPPER, (new Item.Properties()).stacksTo(1).tab(ITEM_GROUP)));
+    public static final RegistryObject<Item> CRAWLER = ITEMS.register("crawler", () -> new CrawlerItem((new Item.Properties()).stacksTo(1).tab(ITEM_GROUP)));
     //Ores
 
     public static final RegistryObject<Item> LEAD_ORE_OVERWORLD_ITEM = fromBlock(LEAD_ORE_OVERWORLD);

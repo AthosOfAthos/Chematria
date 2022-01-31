@@ -1,5 +1,6 @@
 package chematria.entities;
 
+import chematria.Chematria;
 import chematria.items.ChematriaItems;
 import com.google.common.collect.Lists;
 import java.util.List;
@@ -50,10 +51,19 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class Crawler extends Entity {
 
+    public static final EntityType<Crawler> TYPE = EntityType.Builder
+            .<Crawler>of(Crawler::new, MobCategory.MISC)
+            .sized(.125F, .125F)
+            .build(Chematria.ID+":crawler");
+
+    static
+    {
+        TYPE.setRegistryName(Chematria.ID, "crawler");
+    }
+
     private static final EntityDataAccessor<Integer> DATA_ID_HURT = SynchedEntityData.defineId(Crawler.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_ID_HURTDIR = SynchedEntityData.defineId(Crawler.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Float> DATA_ID_DAMAGE = SynchedEntityData.defineId(Crawler.class, EntityDataSerializers.FLOAT);
-    private static final EntityDataAccessor<Integer> DATA_ID_TYPE = SynchedEntityData.defineId(Crawler.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> DATA_ID_PADDLE_LEFT = SynchedEntityData.defineId(Crawler.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> DATA_ID_PADDLE_RIGHT = SynchedEntityData.defineId(Crawler.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> DATA_ID_BUBBLE_TIME = SynchedEntityData.defineId(Crawler.class, EntityDataSerializers.INT);
@@ -94,7 +104,7 @@ public class Crawler extends Entity {
     }
 
     public Crawler(Level p_38293_, double p_38294_, double p_38295_, double p_38296_) {
-        this(ChematriaEntityType.CRAWLER, p_38293_);
+        this(TYPE, p_38293_);
         this.setPos(p_38294_, p_38295_, p_38296_);
         this.xo = p_38294_;
         this.yo = p_38295_;
@@ -113,7 +123,6 @@ public class Crawler extends Entity {
         this.entityData.define(DATA_ID_HURT, 0);
         this.entityData.define(DATA_ID_HURTDIR, 1);
         this.entityData.define(DATA_ID_DAMAGE, 0.0F);
-        this.entityData.define(DATA_ID_TYPE, Crawler.Type.COPPER.ordinal());
         this.entityData.define(DATA_ID_PADDLE_LEFT, false);
         this.entityData.define(DATA_ID_PADDLE_RIGHT, false);
         this.entityData.define(DATA_ID_BUBBLE_TIME, 0);
@@ -133,6 +142,16 @@ public class Crawler extends Entity {
 
     public boolean isPushable() {
         return true;
+    }
+
+    @Override
+    protected void readAdditionalSaveData(CompoundTag p_20052_) {
+
+    }
+
+    @Override
+    protected void addAdditionalSaveData(CompoundTag p_20139_) {
+
     }
 
     protected Vec3 getRelativePortalPosition(Direction.Axis p_38335_, BlockUtil.FoundRectangle p_38336_) {
@@ -196,11 +215,7 @@ public class Crawler extends Entity {
     }
 
     public Item getDropItem() {
-        switch(this.getCrawlerType()) {
-            case COPPER:
-            default:
-                return ChematriaItems.COPPER_CRAWLER.get();
-        }
+        return ChematriaItems.CRAWLER.get();
     }
 
     public void animateHurt() {
@@ -683,17 +698,6 @@ public class Crawler extends Entity {
         this.clampRotation(p_38383_);
     }
 
-    protected void addAdditionalSaveData(CompoundTag p_38359_) {
-        p_38359_.putString("Type", this.getCrawlerType().getName());
-    }
-
-    protected void readAdditionalSaveData(CompoundTag p_38338_) {
-        if (p_38338_.contains("Type", 8)) {
-            this.setType(Crawler.Type.byName(p_38338_.getString("Type")));
-        }
-
-    }
-
     public InteractionResult interact(Player p_38330_, InteractionHand p_38331_) {
         if (p_38330_.isSecondaryUseActive()) {
             return InteractionResult.PASS;
@@ -721,15 +725,6 @@ public class Crawler extends Entity {
                     this.causeFallDamage(this.fallDistance, 1.0F, DamageSource.FALL);
                     if (!this.level.isClientSide && !this.isRemoved()) {
                         this.kill();
-                        if (this.level.getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
-                            for(int i = 0; i < 3; ++i) {
-                                this.spawnAtLocation(this.getCrawlerType().gethull());
-                            }
-
-                            for(int j = 0; j < 2; ++j) {
-                                this.spawnAtLocation(Items.STICK);
-                            }
-                        }
                     }
                 }
 
@@ -781,13 +776,6 @@ public class Crawler extends Entity {
         return this.entityData.get(DATA_ID_HURTDIR);
     }
 
-    public void setType(Crawler.Type p_38333_) {
-        this.entityData.set(DATA_ID_TYPE, p_38333_.ordinal());
-    }
-
-    public Crawler.Type getCrawlerType() {
-        return Crawler.Type.byId(this.entityData.get(DATA_ID_TYPE));
-    }
 
     protected boolean canAddPassenger(Entity p_38390_) {
         return this.getPassengers().size() < 2 && !this.isEyeInFluid(FluidTags.WATER);
@@ -833,50 +821,5 @@ public class Crawler extends Entity {
         UNDER_FLOWING_WATER,
         ON_LAND,
         IN_AIR;
-    }
-
-    public static enum Type {
-        COPPER(Blocks.COPPER_BLOCK, "copper");
-
-        private final String name;
-        private final Block hull;
-
-        private Type(Block p_38427_, String p_38428_) {
-            this.name = p_38428_;
-            this.hull = p_38427_;
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public Block gethull() {
-            return this.hull;
-        }
-
-        public String toString() {
-            return this.name;
-        }
-
-        public static Crawler.Type byId(int p_38431_) {
-            Crawler.Type[] aCrawler$type = values();
-            if (p_38431_ < 0 || p_38431_ >= aCrawler$type.length) {
-                p_38431_ = 0;
-            }
-
-            return aCrawler$type[p_38431_];
-        }
-
-        public static Crawler.Type byName(String p_38433_) {
-            Crawler.Type[] aCrawler$type = values();
-
-            for(int i = 0; i < aCrawler$type.length; ++i) {
-                if (aCrawler$type[i].getName().equals(p_38433_)) {
-                    return aCrawler$type[i];
-                }
-            }
-
-            return aCrawler$type[0];
-        }
     }
 }

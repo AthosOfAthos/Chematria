@@ -1,16 +1,12 @@
 package chematria.entities;
 
-import chematria.entities.Crawler;
-import chematria.entities.CrawlerModel;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
-import java.util.Map;
-import java.util.stream.Stream;
-import net.minecraft.client.model.geom.ModelLayers;
+
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -23,16 +19,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class CrawlerRenderer extends EntityRenderer<Crawler> {
-    private final Map<Crawler.Type, Pair<ResourceLocation, CrawlerModel>> crawlerResources;
-
-    public CrawlerRenderer(EntityRendererProvider.Context p_173936_) {
-        super(p_173936_);
+    private final Pair<ResourceLocation, CrawlerModel> crawlerPair;
+    public CrawlerRenderer(EntityRendererProvider.Context renderManager) {
+        super(renderManager);
         this.shadowRadius = 0.8F;
-        this.crawlerResources = Stream.of(Crawler.Type.values()).collect(ImmutableMap.toImmutableMap((p_173938_) -> {
-            return p_173938_;
-        }, (p_173941_) -> {
-            return Pair.of(new ResourceLocation("textures/entity/Crawler/" + p_173941_.getName() + ".png"), new CrawlerModel(p_173936_.bakeLayer(ChematriaModelLayers.createCrawlerModelName(p_173941_))));
-        }));
+        crawlerPair = Pair.of(new ResourceLocation("textures/entity/crawler/crawler" + ".png"), new CrawlerModel(renderManager.bakeLayer(ChematriaModelLayers.CRAWLER)));
     }
 
     public void render(Crawler p_113929_, float p_113930_, float p_113931_, PoseStack p_113932_, MultiBufferSource p_113933_, int p_113934_) {
@@ -72,9 +63,9 @@ public class CrawlerRenderer extends EntityRenderer<Crawler> {
     }
 
     @Deprecated // forge: override getModelWithLocation to change the texture / model
-    public ResourceLocation getTextureLocation(Crawler p_113927_) {
-        return getModelWithLocation(p_113927_).getFirst();
+    public ResourceLocation getTextureLocation(Crawler crawler) {
+        return getModelWithLocation(crawler).getFirst();
     }
 
-    public Pair<ResourceLocation, CrawlerModel> getModelWithLocation(Crawler Crawler) { return this.crawlerResources.get(Crawler.getCrawlerType()); }
+    public Pair<ResourceLocation, CrawlerModel> getModelWithLocation(Crawler Crawler) { return this.crawlerPair; }
 }
