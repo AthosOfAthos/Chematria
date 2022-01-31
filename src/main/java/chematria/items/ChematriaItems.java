@@ -18,34 +18,32 @@ import static chematria.blocks.ChematriaBlocks.*;
 
 public final class ChematriaItems {
 
-    public static final CreativeModeTab ITEM_GROUP = new CreativeModeTab(ID) {
-        @Override
-        public ItemStack makeIcon() {
-            return new ItemStack(Items.LIGHTNING_ROD);
-        }
-    };
-
-    public static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(ITEM_GROUP);
-    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ID);
-
-    public static final RegistryObject<BlockItem> LARGE_JAR_ITEM = ITEMS.register("large_jar", () -> new BlockItem(ChematriaBlocks.LARGE_JAR.get(), new Item.Properties().tab(CreativeModeTab.TAB_BREWING)));
-
-    public static final RegistryObject<BlockItem> MORTAR_AND_PESTLE = ITEMS.register("mortar_and_pestle", () -> new BlockItem(ChematriaBlocks.MORTAR_AND_PESTLE.get(), new Item.Properties().stacksTo(1)));
-
-    public static final RegistryObject<Item> COPPER_CRAWLER = ITEMS.register("copper_crawler", () -> new CrawlerItem(Crawler.Type.COPPER, (new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_TRANSPORTATION)));
 
     private ChematriaItems() {}
+
+    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ID);
 
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
     }
 
+    public static final CreativeModeTab ITEM_GROUP = new CreativeModeTab(ID) {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(ChematriaItems.MORTAR_AND_PESTLE.get());
+        }
+    };
 
+    public static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(ITEM_GROUP);
 
     public static <B extends Block> RegistryObject<Item> fromBlock(RegistryObject<B> block) {
         return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), ITEM_PROPERTIES));
     }
 
+    //Alchemy
+    public static final RegistryObject<BlockItem> LARGE_JAR_ITEM = ITEMS.register("large_jar", () -> new BlockItem(ChematriaBlocks.LARGE_JAR.get(), new Item.Properties().tab(ITEM_GROUP)));
+    public static final RegistryObject<BlockItem> MORTAR_AND_PESTLE = ITEMS.register("mortar_and_pestle", () -> new BlockItem(ChematriaBlocks.MORTAR_AND_PESTLE.get(), new Item.Properties().stacksTo(1).tab(ITEM_GROUP)));
+    public static final RegistryObject<Item> COPPER_CRAWLER = ITEMS.register("copper_crawler", () -> new CrawlerItem(Crawler.Type.COPPER, (new Item.Properties()).stacksTo(1).tab(ITEM_GROUP)));
     //Ores
 
     public static final RegistryObject<Item> LEAD_ORE_OVERWORLD_ITEM = fromBlock(LEAD_ORE_OVERWORLD);

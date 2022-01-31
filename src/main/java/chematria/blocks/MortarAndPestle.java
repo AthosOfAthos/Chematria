@@ -8,7 +8,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -37,14 +36,14 @@ public class MortarAndPestle extends Block implements EntityBlock {
         super.attack(blockstate, level, position, player);
         MortarAndPestleEntity mortar = (MortarAndPestleEntity) level.getBlockEntity(position);
         if (mortar != null)
-            mortar.attack();
+            mortar.onAttack();
     }
 
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos position, Player player, boolean willHarvest, FluidState fluid) {
         MortarAndPestleEntity mortar = (MortarAndPestleEntity) level.getBlockEntity(position);
         if (mortar != null)
-            mortar.destroy();
+            mortar.onDestroy();
         return super.onDestroyedByPlayer(state, level, position, player, willHarvest, fluid);
     }
 
@@ -52,7 +51,7 @@ public class MortarAndPestle extends Block implements EntityBlock {
     public InteractionResult use(BlockState blockstate, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult) {
         MortarAndPestleEntity mortar = (MortarAndPestleEntity) level.getBlockEntity(position);
         if (mortar != null)
-            mortar.use(player);
+            mortar.onUse(player);
         return InteractionResult.SUCCESS;
     }
 
