@@ -38,6 +38,11 @@ public final class ChematriaItems {
     public static final RegistryObject<BlockItem> LARGE_JAR_ITEM = ITEMS.register("large_jar", () -> new BlockItem(ChematriaBlocks.LARGE_JAR.get(), new Item.Properties().tab(ITEM_GROUP)));
     public static final RegistryObject<BlockItem> MORTAR_AND_PESTLE = ITEMS.register("mortar_and_pestle", () -> new BlockItem(ChematriaBlocks.MORTAR_AND_PESTLE.get(), new Item.Properties().stacksTo(1).tab(ITEM_GROUP)));
 
+    //Wood
+    public static final RegistryObject<BlockItem> WILLOW_LOG_ITEM = ITEMS.register("willow_log",  () -> new BlockItem(WILLOW_LOG.get(), new Item.Properties().tab(ITEM_GROUP)));
+    public static final RegistryObject<BlockItem> STRIPPED_WILLOW_LOG_ITEM = ITEMS.register("stripped_willow_log",  () -> new BlockItem(STRIPPED_WILLOW_LOG.get(), new Item.Properties().tab(ITEM_GROUP)));
+    public static final RegistryObject<Item> WILLOW_BARK = ITEMS.register("willow_bark", () -> new Item(new Item.Properties().tab(ITEM_GROUP)));
+
     //Ores
     public static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(ITEM_GROUP);
     public static final RegistryObject<Item> LEAD_ORE_OVERWORLD_ITEM = fromBlock(LEAD_ORE_OVERWORLD);

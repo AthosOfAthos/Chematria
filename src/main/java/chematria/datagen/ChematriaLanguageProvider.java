@@ -41,6 +41,11 @@ public class ChematriaLanguageProvider extends LanguageProvider {
 
         //Crafting
         add(ChematriaItems.MORTAR_AND_PESTLE.get(), "Mortar and Pestle");
+
+        //Wood
+        add(ChematriaBlocks.WILLOW_LOG.get(), "Willow Log");
+        add(ChematriaBlocks.STRIPPED_WILLOW_LOG.get(), "Stripped Willow Log");
+        add(ChematriaItems.WILLOW_BARK.get(), "Willow Bark");
     }
 
 }

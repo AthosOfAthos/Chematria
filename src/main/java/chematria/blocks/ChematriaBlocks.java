@@ -5,6 +5,7 @@ import chematria.blocks.entities.MortarAndPestleEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.Tags;
@@ -33,6 +34,10 @@ public final class ChematriaBlocks {
         BLOCKS.register(bus);
         BLOCK_ENTITIES.register(bus);
     }
+
+    //Wood
+    public static final RegistryObject<WillowLog> WILLOW_LOG = BLOCKS.register("willow_log", WillowLog::new);
+    public static final RegistryObject<RotatedPillarBlock> STRIPPED_WILLOW_LOG = BLOCKS.register("stripped_willow_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.5f).explosionResistance(0.5f)));
 
     //Ores
     public static final BlockBehaviour.Properties ORE_PROPERTIES = BlockBehaviour.Properties.of(Material.STONE).strength(2f).requiresCorrectToolForDrops();

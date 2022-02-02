@@ -7,8 +7,10 @@
   "block.chematria.mortar_and_pestle": "Mortar and Pestle",
   "block.chematria.silver_ore_deepslate": "Silver Ore",
   "block.chematria.silver_ore_overworld": "Silver Ore",
+  "block.chematria.stripped_willow_log": "Stripped Willow Log",
   "block.chematria.tin_ore_deepslate": "Tin Ore",
   "block.chematria.tin_ore_overworld": "Tin Ore",
+  "block.chematria.willow_log": "Willow Log",
   "item.chematria.lead_ingot": "Lead Ingot",
   "item.chematria.mercury_ingot": "Mercury Ingot",
   "item.chematria.raw_lead_chunk": "Lead Raw Chunk",
@@ -17,5 +19,6 @@
   "item.chematria.raw_tin_chunk": "Tin Raw Chunk",
   "item.chematria.silver_ingot": "Silver Ingot",
   "item.chematria.tin_ingot": "Tin Ingot",
+  "item.chematria.willow_bark": "Willow Bark",
   "itemGroup.chematria": "Chematria"
 }

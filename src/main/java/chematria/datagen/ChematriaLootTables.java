@@ -15,6 +15,9 @@ public class ChematriaLootTables extends ChematriaLootTableProvider {
         lootTables.put(ChematriaBlocks.LARGE_JAR.get(), createSimpleTable("large_jar", ChematriaBlocks.LARGE_JAR.get()));
         lootTables.put(ChematriaBlocks.MORTAR_AND_PESTLE.get(), createSimpleTable("mortar_and_pestle", ChematriaBlocks.MORTAR_AND_PESTLE.get()));
 
+        lootTables.put(ChematriaBlocks.WILLOW_LOG.get(), createSimpleTable("willow_log", ChematriaBlocks.WILLOW_LOG.get()));
+        lootTables.put(ChematriaBlocks.STRIPPED_WILLOW_LOG.get(), createSimpleTable("willow_log", ChematriaBlocks.STRIPPED_WILLOW_LOG.get()));
+
         lootTables.put(ChematriaBlocks.LEAD_ORE_OVERWORLD.get(), createSilkTouchTable("lead_ore_overworld", ChematriaBlocks.LEAD_ORE_OVERWORLD.get(), ChematriaItems.RAW_LEAD_CHUNK.get(), 1, 3));
         lootTables.put(ChematriaBlocks.LEAD_ORE_DEEPSLATE.get(), createSilkTouchTable("lead_ore_deepslate", ChematriaBlocks.LEAD_ORE_DEEPSLATE.get(), ChematriaItems.RAW_LEAD_CHUNK.get(), 1, 3));
 
