@@ -56,5 +56,9 @@ public class ChematriaItemModel extends ItemModelProvider {
         singleTexture(ChematriaItems.SILVER_INGOT.get().getRegistryName().getPath(),
                 mcLoc("item/generated"),
                 "layer0", modLoc("item/silver_ingot"));
+
+
+        //Rat egg
+        withExistingParent(ChematriaItems.RAT_EGG.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
     }
 }

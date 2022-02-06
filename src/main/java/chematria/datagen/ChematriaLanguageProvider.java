@@ -1,6 +1,7 @@
 package chematria.datagen;
 
 import chematria.blocks.ChematriaBlocks;
+import chematria.entities.ChematriaEntities;
 import chematria.items.ChematriaItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
@@ -46,6 +47,10 @@ public class ChematriaLanguageProvider extends LanguageProvider {
         add(ChematriaBlocks.WILLOW_LOG.get(), "Willow Log");
         add(ChematriaBlocks.STRIPPED_WILLOW_LOG.get(), "Stripped Willow Log");
         add(ChematriaItems.WILLOW_BARK.get(), "Willow Bark");
+
+        //Rat
+        add(ChematriaItems.RAT_EGG.get(), "Rat Egg");
+        add(ChematriaEntities.RAT.get(), "Rat");
     }
 
 }

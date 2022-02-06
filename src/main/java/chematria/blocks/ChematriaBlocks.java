@@ -30,6 +30,7 @@ public final class ChematriaBlocks {
     public static final RegistryObject<BlockEntityType<MortarAndPestleEntity>> MORTAR_AND_PESTLE_ENTITY = BLOCK_ENTITIES.register("mortar_and_pestle_entity",
             () -> BlockEntityType.Builder.of(MortarAndPestleEntity::new, MORTAR_AND_PESTLE.get()).build(null));
 
+
     public static void register(IEventBus bus) {
         BLOCKS.register(bus);
         BLOCK_ENTITIES.register(bus);

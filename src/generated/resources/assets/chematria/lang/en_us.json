@@ -11,6 +11,7 @@
   "block.chematria.tin_ore_deepslate": "Tin Ore",
   "block.chematria.tin_ore_overworld": "Tin Ore",
   "block.chematria.willow_log": "Willow Log",
+  "entity.chematria.rat": "Rat",
   "item.chematria.lead_ingot": "Lead Ingot",
   "item.chematria.mercury_ingot": "Mercury Ingot",
   "item.chematria.raw_lead_chunk": "Lead Raw Chunk",
@@ -18,6 +19,7 @@
   "item.chematria.raw_silver_chunk": "Silver Raw Chunk",
   "item.chematria.raw_tin_chunk": "Tin Raw Chunk",
   "item.chematria.silver_ingot": "Silver Ingot",
+  "item.chematria.thief": "Rat Egg",
   "item.chematria.tin_ingot": "Tin Ingot",
   "item.chematria.willow_bark": "Willow Bark",
   "itemGroup.chematria": "Chematria"
